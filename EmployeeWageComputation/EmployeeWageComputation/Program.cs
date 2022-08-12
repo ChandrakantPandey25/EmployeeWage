@@ -10,6 +10,7 @@ namespace EmployeeWageComputation
             Console.WriteLine("Enter 1: To check Employee Attendance");
             Console.WriteLine("Enter 2: To check Employee Daily Wage");
             Console.WriteLine("Enter 3: To check Employee Parttime Daily Wage");
+            Console.WriteLine("Enter 4: To check Employee Parttime Daily Wageusing Switch Case");
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -23,6 +24,10 @@ namespace EmployeeWageComputation
                 case 3:
                     EmpPartTimeWage WageParttime = new EmpPartTimeWage();
                     WageParttime.EmplPartimeWage();
+                    break;
+                case 4:
+                    EmpParttimeWageSwitchCase WageSwitch = new EmpParttimeWageSwitchCase();
+                    WageSwitch.WageSwitchCase();
                     break;
 
 
