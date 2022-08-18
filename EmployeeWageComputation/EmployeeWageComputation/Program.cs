@@ -13,6 +13,7 @@ namespace EmployeeWageComputation
             Console.WriteLine("Enter 4: To check Employee Parttime Daily Wage using Switch Case");
             Console.WriteLine("Enter 5: To check Employee Monthly Wage");
             Console.WriteLine("Enter 6: To check Employee Monthly Wage using Switch Case ");
+            Console.WriteLine("Enter 8: To check Employee Monthly Wage for multiple companies using Switch Case ");
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -38,6 +39,13 @@ namespace EmployeeWageComputation
                 case 6:
                     EmpMonthlyWageSwitchCase Monthly = new EmpMonthlyWageSwitchCase();
                     Monthly.MonthlyWageSwitchCase();
+                    break;
+                case 8:
+                    Wage_Computation Employee = new Wage_Computation();
+
+                    Employee.AddCompany("TCS", 15, 8, 4, 100, 20);
+                    Employee.Present_Check();
+                    Employee.Calculations("TCS");
                     break;
 
 
