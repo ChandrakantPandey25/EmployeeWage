@@ -76,7 +76,7 @@ namespace EmployeeWageComputation
 
                 }
                 Total_Working_Hrs += Hr_Per_Day;
-                Wage_Per_Day = (comp_obj.Wage_Per_Hr * Hr_Per_Day);
+                Wage_Per_Day = (comp_obj.Wage_Per_Hr * Hr_Per_Day);                
                 Monthly_Wage += Wage_Per_Day;
             }
             Console.WriteLine("For " + Company_Name);
