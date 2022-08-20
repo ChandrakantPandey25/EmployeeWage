@@ -34,11 +34,7 @@ namespace EmployeeWageComputation
             this.wagesPerMonth = Monthly_Wage;
             Console.WriteLine($"Wages for the company {Company_name} for the month : {wagesPerMonth}");
         }
-        public void printMonthlyWage()
-        {
-            
-            Console.WriteLine($"Wages for the company {Company_name} for the month : {wagesPerMonth}");
-        }        
+
 
         public void AddCompany(string Company_Name, int Wage_Per_Hr, int Full_Hr_Per_Day, int Part_Hr_Per_Day, int Max_Working_Days, int Max_Working_Hrs)
 
