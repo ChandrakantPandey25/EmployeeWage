@@ -1,9 +1,17 @@
 ﻿using System;
+using static EmployeeWageComputation.Wage_Computation;
 
 namespace EmployeeWageComputation
 {
     class Program
     {
+        public static string Company_Name { get; private set; }
+        public static int Wage_Per_Hr { get; private set; }
+        public static int Full_Hr_Per_Day { get; private set; }
+        public static int Part_Hr_Per_Day { get; private set; }
+        public static int Max_Working_Days { get; private set; }
+        public static int Max_Working_Hrs { get; private set; }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Compuatation");
@@ -14,6 +22,8 @@ namespace EmployeeWageComputation
             Console.WriteLine("Enter 5: To check Employee Monthly Wage");
             Console.WriteLine("Enter 6: To check Employee Monthly Wage using Switch Case ");
             Console.WriteLine("Enter 8: To check Employee Monthly Wage for multiple companies using Switch Case ");
+            Console.WriteLine("Enter 9: To check Employee Monthly Wage for multiple companies using Array ");
+            
             int option = Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -47,8 +57,12 @@ namespace EmployeeWageComputation
                     Employee.Present_Check();
                     Employee.Calculations("TCS");
                     break;
+                case 9:
+                    TotalWageMultiCompanyArray empWageBuilder = new TotalWageMultiCompanyArray(Company_Name, Wage_Per_Hr, Full_Hr_Per_Day, Part_Hr_Per_Day, Max_Working_Days, Max_Working_Hrs);
 
-
+                    empWageBuilder.AddCompany("TCS", 20, 8, 4,80,20);
+                    empWageBuilder.AddCompany("HUNDAI", 20, 8, 4, 90, 20);                   
+                    break;
 
                 default:
                     Console.WriteLine("Enter Valid Number");

@@ -29,7 +29,11 @@ namespace EmployeeWageComputation
         public const int Full_Time = 1;
         public const int Part_Time = 2;
         public Dictionary<string, MultipleCompanies> Companies_Dict;
+       
 
+
+       
+       
         public Wage_Computation()
         {
             Companies_Dict = new Dictionary<string, MultipleCompanies>();
@@ -76,18 +80,24 @@ namespace EmployeeWageComputation
 
                 }
                 Total_Working_Hrs += Hr_Per_Day;
-                Wage_Per_Day = (comp_obj.Wage_Per_Hr * Hr_Per_Day);                
+                Wage_Per_Day = (comp_obj.Wage_Per_Hr * Hr_Per_Day);
                 Monthly_Wage += Wage_Per_Day;
             }
             Console.WriteLine("For " + Company_Name);
             Console.WriteLine("Total hours worked=" + Total_Working_Hrs);
             Console.WriteLine("Total Days Present=" + Present_Days);
             Console.WriteLine("Monthly Wage=" + Monthly_Wage + "\n");
-
-
-
-
-
         }
+
+        
+            
+            
+        
+
+
+
+
+
+        
     }
 }

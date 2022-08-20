@@ -6,7 +6,7 @@ namespace EmployeeWageComputation
 {
     class EmpWageMonthly
     {
-        public int Wages_Month()
+        public  int Wages_Month()
         {
             const int IS_FULL_TIME = 1;
             const int IS_PART_TIME = 2;
