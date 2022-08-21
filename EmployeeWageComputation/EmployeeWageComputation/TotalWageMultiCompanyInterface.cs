@@ -4,21 +4,25 @@ using System.Text;
 
 namespace EmployeeWageComputation
 {
-    public class TotalWageMultiCompanyArray
+    public class TotalWageMultiCompanyIFace : ICompanyEmpWage
     {
+
         public const int Full_Time = 1;
         public const int Part_Time = 2;
         public string Company_name;
         public int Wage_Per_Hr;
-        public int Full_Hr_Per_Day=8;
-        public int Part_Hr_Per_Day=4;
+        public int Full_Hr_Per_Day = 8;
+        public int Part_Hr_Per_Day = 4;
         public int Max_Working_Days;
         public int Max_Working_Hrs;
-        int wagesPerMonth = 0;
-        TotalWageMultiCompanyArray[] companies;
+       public int wagesPerMonth = 0;
+        TotalWageMultiCompanyIFace[] companies;
         int compCount;
+        internal static TotalWageMultiCompanyIFace empWage_Builder;
 
-        public TotalWageMultiCompanyArray(string Company_Name, int Wage_Per_Hr, int Full_Hr_Per_Day, int Part_Hr_Per_Day, int Max_Working_Days, int Max_Working_Hrs)
+        //internal static TotalWageMultiCompanyIFace empWage_Builder;
+
+        public  void TotalCompanyWage(string Company_Name, int Wage_Per_Hr, int Full_Hr_Per_Day, int Part_Hr_Per_Day, int Max_Working_Days, int Max_Working_Hrs)
         {
             this.Company_name = Company_Name;
             this.Wage_Per_Hr = Wage_Per_Hr;
@@ -26,10 +30,11 @@ namespace EmployeeWageComputation
             this.Part_Hr_Per_Day = Part_Hr_Per_Day;
             this.Max_Working_Hrs = Max_Working_Hrs;
             this.Max_Working_Days = Max_Working_Days;
-            companies = new TotalWageMultiCompanyArray[6];
-            compCount = 0;
+            companies = new TotalWageMultiCompanyIFace[6];
+            int compCount = 0;
         }
-        public void MonthlyWages(int Monthly_Wage)
+    
+                public void MonthlyWages(int Monthly_Wage)
         {
             this.wagesPerMonth = Monthly_Wage;
             Console.WriteLine($"Wages for the company {Company_name} for the month : {wagesPerMonth}");
@@ -39,19 +44,20 @@ namespace EmployeeWageComputation
         public void AddCompany(string Company_Name, int Wage_Per_Hr, int Full_Hr_Per_Day, int Part_Hr_Per_Day, int Max_Working_Days, int Max_Working_Hrs)
 
         {
-            TotalWageMultiCompanyArray company = new TotalWageMultiCompanyArray(Company_Name.ToLower(), Wage_Per_Hr, Full_Hr_Per_Day, Part_Hr_Per_Day, Max_Working_Days, Max_Working_Hrs);
+            TotalWageMultiCompanyIFace company = new TotalWageMultiCompanyIFace(/*Company_Name.ToLower(), Wage_Per_Hr, Full_Hr_Per_Day, Part_Hr_Per_Day, Max_Working_Days, Max_Working_Hrs*/);
+            company.TotalCompanyWage(Company_Name.ToLower(), Wage_Per_Hr, Full_Hr_Per_Day, Part_Hr_Per_Day, Max_Working_Days, Max_Working_Hrs);
             company.MonthlyWages(this.Calculations(company));
             companies[compCount] = company;
-            compCount++;
+            compCount=compCount+1;
 
-            
+
 
         }
         public int Present_Check()
         {
             return new Random().Next(0, 3);
         }
-        public int Calculations(TotalWageMultiCompanyArray company)
+        public int Calculations(TotalWageMultiCompanyIFace company)
         {
             int Hr_Per_Day = 0;
             int Wage_Per_Day = 0;
@@ -59,7 +65,7 @@ namespace EmployeeWageComputation
             int Present_Days = 0;
             int Monthly_Wage = 0;
 
-          
+
             while (Total_Working_Hrs < company.Max_Working_Hrs && Present_Days < company.Max_Working_Days)
             {
                 switch (Present_Check())
@@ -82,13 +88,27 @@ namespace EmployeeWageComputation
                 Monthly_Wage += Wage_Per_Day;
             }
             return Monthly_Wage;
-          
+
             Console.WriteLine("Wages in a Month:" + Monthly_Wage + "\n");
         }
 
-        //public static implicit operator TotalWageMultiCompanyArray(TotalWageMultiCompanyIFace v)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void AddCompany(string companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+    }
+    interface ICompanyEmpWage
+    {
+        //public TotalWageMultiCompanyIFace();
+        void AddCompany(string companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours);
+        public void MonthlyWages(int Monthly_Wage);
+        int Calculations(TotalWageMultiCompanyIFace company);
+        public void TotalCompanyWage(string Company_Name, int Wage_Per_Hr, int Full_Hr_Per_Day, int Part_Hr_Per_Day, int Max_Working_Days, int Max_Working_Hrs);
+        public int Present_Check();
+        
+
+
     }
 }
